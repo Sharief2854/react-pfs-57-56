@@ -22,7 +22,7 @@ function Home() {
     }
     let newArr=data.map((item,ind)=>{
         return(
-            <Card name={item.name} specialization={item.specialization} gender={item.gender} key={ind}/>
+            <Card name={item.name} specialization={item.specialization} gender={item.gender} key={ind} id={item.id}/>
         )
     });
 
