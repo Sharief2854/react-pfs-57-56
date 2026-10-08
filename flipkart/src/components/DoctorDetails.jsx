@@ -1,15 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function DoctorDetails() {
     const[doctor,setDoctor]=useState({});
 
     let params=useParams();
+    const navigate=useNavigate();
     
     async function getData(){
         let res=await axios.get(`http://localhost:3000/doctors/${params.id}`)
         setDoctor(res.data);
+    }
+
+    async function deleteDoctor(){
+      try{
+        await axios.delete(`http://localhost:3000/doctors/${params.id}`)
+        alert("deleted")
+        navigate("/")
+      }
+      catch(err){ 
+        alert("something went wrong....")
+      }
+      finally{
+
+      }
     }
 
     useEffect(()=>{
@@ -30,10 +45,11 @@ function DoctorDetails() {
 
           <p className="subtitle">{doctor.specialization}</p>
           <div className="card-btns">
-            <button className="btn-2">
+            <button className="btn-2" onClick={()=>navigate(`/editDoctor/${doctor.id}`)}>
               Edit
             </button>
             <button
+              onClick={deleteDoctor}
               className="btn-2"
               style={{
                 backgroundColor: "transparent",

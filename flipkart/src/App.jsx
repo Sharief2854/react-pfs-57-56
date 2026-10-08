@@ -5,6 +5,7 @@ import AddDoctor from './components/AddDoctor'
 import Navbar from './components/Navbar'
 import {BrowserRouter, Routes,Route} from 'react-router-dom'
 import DoctorDetails from './components/DoctorDetails'
+import EditDoctor from './components/editDoctor'
 function App() {
   return (
     <div>
@@ -14,6 +15,8 @@ function App() {
               <Route path='/' element={<Home/>}/>
               <Route path='/addDoctor' element={<AddDoctor/>}/>
               <Route path='/doctorDetails/:id' element={<DoctorDetails/>}/>
+              <Route path='/editDoctor/:id' element={<EditDoctor/>}/>
+              
               
             </Routes>
         </BrowserRouter>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function AddDoctor() {
     const[name,setName]=useState("");
@@ -8,6 +9,8 @@ function AddDoctor() {
     const[specialization,setSpecialization]=useState("");
     const[salary,setSalary]=useState("");
     const[loading,setLoading]=useState(false);
+
+    const navigate=useNavigate();
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -31,6 +34,7 @@ function AddDoctor() {
             let res=await axios.post("http://localhost:3000/doctors",data)
             // console.log(res);
             alert("doctor details added!!!");
+            navigate("/")
         }
         catch(err){
             alert("something went wrong")
